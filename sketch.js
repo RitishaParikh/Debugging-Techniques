@@ -40,7 +40,7 @@ function setup(){
     log4 = new Log(760,120,150, PI/7);
     log5 = new Log(870,120,150, -PI/7);
 
-    bird = new Bird(200,50);
+    bird = new Bird(200, 50);
 
     //log6 = new Log(230,180,80, PI/2);
     slingshot = new SlingShot(bird.body,{x:200, y:50});
@@ -89,12 +89,14 @@ function mouseDragged(){
 
 function mouseReleased(){
     slingshot.fly();
-    gameState = "launched";
+    //gameState = "launched";
 }
 
 function keyPressed(){
     if(keyCode === 32){
-       // slingshot.attach(bird.body);
+       bird.trajectory = []; 
+       Matter.Body.setPosition(bird.body, {x: 200 , y: 50});
+       slingshot.attach(bird.body);
     }
 }
 
@@ -115,3 +117,15 @@ async function getBackgroundImg(){
     backgroundImg = loadImage(bg);
     console.log(backgroundImg);
 }
+/*
+Common errors:
+
+1. Typos
+2. Incorrect use of a function
+3. Using variables outside of their scope
+
+To identify some problems:
+1. Comment some sections of code
+2. Printing values of variables in the console - trial & error method
+3. Print messages in your code
+*/
